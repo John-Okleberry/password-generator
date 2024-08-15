@@ -1,0 +1,136 @@
+:root {
+    --color-white: #FFFFFF;
+    --color-green: #10B981;
+    --color-dark: #111827;
+    --color-medium-grey: #D5D4D8;
+    --color-section-border: #2F3E53;
+    --color-bg-dark: #273549;
+}
+
+body {
+    margin: 0;
+    font-family: Karla, sans-serif;
+    background: var(--color-dark);
+    padding: 100px;
+}
+
+
+h1 {
+    max-width: 100%;
+    min-width: 250px;
+
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 40px;
+
+    color: var(--color-white);
+}
+
+h2 {
+    max-width: 100%;
+    min-width: 250px;
+
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 28px;
+    
+    color: var(--color-medium-grey);
+
+}
+
+p {
+    text-align: center;
+    font-weight: 400;
+    word-break: break-all;
+    
+    color: var(--color-green);
+}
+
+.textHighlight {
+    color: var(--color-green);
+}
+
+.section-greeting {
+    
+    min-width: 230px;
+    
+    border-bottom: 1px solid var(--color-section-border);
+    padding: 10px;
+    
+    text-align: left;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 40px;
+    letter-spacing: -0.025em;
+}
+
+.section-results {
+    min-width: 250px;
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+
+#btn-generate {
+    width: 185px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 9px 17px;
+    margin: 40px 0px 20px;
+    border-radius: 6px;
+
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 24px;
+
+    background: var(--color-green);
+    color: var(--color-white);
+
+}
+
+.result {
+
+    width: 100%;
+    
+    border-radius: 6px;
+    margin: 30px auto;
+    overflow-wrap: break-word;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: var(--color-bg-dark);
+}
+
+.hover-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    
+    color: var(--color-white);
+}
+
+.result:hover .hover-text {
+    display: block;
+}
+
+.result:hover p {
+    opacity: 0;
+}
+
+#customizations-el {
+    min-width: 250px;
+    
+    color: var(--color-white);
+}

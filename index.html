@@ -1,0 +1,92 @@
+<html>
+<!-- NOTE: To use the copy to clipboard feature, this website needs the site setting for click to copy functionality. An error message appears in Scrimba that does not appear when executing in Visual Studio Code-->
+
+<head>
+    <title>Password Generator</title>
+    <meta http-equiv="Permissions-Policy" content="clipboard-write=(self)">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bangers&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bangers&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <div class="section-greeting">
+            
+            <!-- Section of the page for the heading and subheading -->            
+            <div>
+                <h1>Generate a <span class="textHighlight">random password</span></h1>
+            </div>
+            <div>
+                <h2>Never use an insecure password again.</h2>
+            </div>
+            <div>
+                <button id="btn-generate">Generate passwords</button>
+            </div>
+
+            <!-- Section of the page for the customization selections-->
+            <div>
+                <form id="customizations-el">
+                    <div class="input-item">
+                        <label for="length-el">Length (8-64) [32]</label>
+                        <input type="range" id="length-el" name="length" min="8" max="64">
+                    </div>
+                    <div class="input-item">
+                        <input type="checkbox" id="specials-el" name="specials" value="useSpecials" checked="checked">
+                        <label for="specials-el">Use Special Characters</label>
+                    </div>
+                    <div class="input-item">
+                        <input type="checkbox" id="numbers-el" name="numbers" value="useNumbers" checked="checked">
+                        <label for="numbers-el">Use Numbers</label>
+                    </div>
+                    <div class="input-item">
+                        <input type="checkbox" id="duplicates-el" name="duplicates" value="excludeDuplicates">
+                        <label for="duplicates-el">Exclude Duplicates</label>
+                    </div>
+
+                    <!-- Radio buttons for letter case adjustments -->
+                    <div class="input-item">
+                        <input type="radio" id="both-cases-el" name="case-option" value="bothCases" checked="checked">
+                        <label for="both-cases-el">Use Upper and Lowercase letters</label>
+                    </div>
+                    <div class="input-item">
+                        <input type="radio" id="uppercase-el" name="case-option" value="allUppercase">
+                        <label for="uppercase-el">All Capital Letters</label>
+                    </div>
+                    <div class="input-item">
+                        <input type="radio" id="lowercase-el" name="case-option" value="allLowercase">
+                        <label for="lowercase-el">All Lowercase Letters</label>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- A section for displaying the resulting passwords -->
+        <div class="section-results">
+            <div id="password1-container" class="result">
+                <p id="password1-el">Password 1</p>
+                <span class="hover-text">Click to Copy</span>
+            </div>
+            <div id="password2-container" class="result" i>
+                <p id="password2-el">Password 2</p>
+                <span class="hover-text">Click to Copy</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
