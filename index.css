@@ -1,3 +1,16 @@
+/* ----------------------------------
+--------- ROOT CSS SETTINGS ---------
+---------------------------------- */
+
+
+/* Universal CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Simplified color management */
 :root {
     --color-white: #FFFFFF;
     --color-green: #10B981;
@@ -7,6 +20,7 @@
     --color-bg-dark: #273549;
 }
 
+/* Overall text and spacing at the edge of the page*/
 body {
     margin: 0;
     font-family: Karla, sans-serif;
@@ -14,50 +28,99 @@ body {
     padding: 100px;
 }
 
+/* Changes the cursor to make clickable UI more obvious */
+button,
+.result {
+    cursor: pointer;
+}
 
+/* Helpful flexbox grouping between sections */
+.section-greeting,
+.section-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Styling to add space between the footer and main sections */
+footer {
+    margin-top: 20px;
+}
+
+/* Visually hidden class for accessibility that doesn't affect formatting */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+
+
+/* -----------------------------------
+ PRIMARY HEADING + BUTTON CSS SETTINGS
+----------------------------------- */
+
+
+/* Primary header spacing, color, and font-sizing */
 h1 {
     max-width: 100%;
-    min-width: 250px;
-
+    min-width: 150px;
     font-weight: 800;
     font-size: 40px;
     line-height: 40px;
-
     color: var(--color-white);
 }
 
+/* Secondary header spacing, color, font-sizing and font family */
 h2 {
     max-width: 100%;
     min-width: 250px;
-
     font-family: 'Inter', sans-serif;
     font-weight: 300;
     font-size: 20px;
     line-height: 28px;
-    
     color: var(--color-medium-grey);
-
 }
 
-p {
-    text-align: center;
-    font-weight: 400;
-    word-break: break-all;
-    
-    color: var(--color-green);
-}
-
+/* Some styling specific to the part of the main header that is not white */
 .textHighlight {
     color: var(--color-green);
 }
 
+/* Spacing, sizing, coloring, and alignment for the button near the top */
+#btn-generate {
+    width: 50%;
+    min-width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 17px;
+    margin: 40px 0px 20px;
+    border-radius: 6px;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 24px;
+    background: var(--color-green);
+    color: var(--color-white);
+}
+
+
+
+/* -----------------------------------
+- CUSTOMIZATION SECTION CSS SETTINGS -
+----------------------------------- */
+
+
+/* The main section where customizations take place, text sizing, spacing, and dividing line */
 .section-greeting {
-    
-    min-width: 230px;
-    
+    min-width: 150px;
     border-bottom: 1px solid var(--color-section-border);
     padding: 10px;
-    
     text-align: left;
     font-size: 12px;
     font-weight: 800;
@@ -65,72 +128,320 @@ p {
     letter-spacing: -0.025em;
 }
 
-.section-results {
-    min-width: 250px;
+/* Designed to keep the customizations section from getting too smooshed */
+#customizations-el {
+    min-width: 200px;
+    color: var(--color-white);
+}
 
+/* Remove formatting for fieldset, this is added strictly for accessibility */
+fieldset {
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+/* ----------------------------------
+- GENERATED PASSSWORDS CSS SETTINGS -
+---------------------------------- */
+
+
+/* Spacing and alignment for the overall section where the passwords show up (below the line) */
+.section-results {
+    min-width: 200px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-
 }
 
-
-#btn-generate {
-    width: 185px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    padding: 9px 17px;
-    margin: 40px 0px 20px;
-    border-radius: 6px;
-
-    font-weight: 300;
-    font-size: 12px;
-    line-height: 24px;
-
-    background: var(--color-green);
-    color: var(--color-white);
-
+/* Alignment, text sizing, text overflow, and coloring for the generated passwords */
+p {
+    text-align: center;
+    font-weight: 400;
+    word-break: break-all;
+    color: var(--color-green);
 }
 
+/* Styling for the container that holds both the password paragraphs and the hover text span */
 .result {
-
     width: 100%;
-    
     border-radius: 6px;
-    margin: 30px auto;
+    margin: 5px auto;
     overflow-wrap: break-word;
-
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    
     background: var(--color-bg-dark);
 }
 
+/* Handles the "Click to Copy" text being present but hidden */
 .hover-text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
-    
     color: var(--color-white);
+    white-space: nowrap;
 }
 
+/* Makes the "Click to Copy" text appear when the cursor is hovering over it */
 .result:hover .hover-text {
     display: block;
 }
 
+/* Hides the password text when the hover text appears */
 .result:hover p {
     opacity: 0;
 }
 
-#customizations-el {
-    min-width: 250px;
-    
-    color: var(--color-white);
+
+
+/* ----------------------------------
+-- RESPONSIVE DESIGN MEDIA QUERIES --
+---------------------------------- */
+
+
+/* ------------- 1400px -------------- */
+@media (max-width: 87.5rem) {
+    /* 1400px = 87.5rem */
+
+    body {
+        padding: 0px 4.375rem;
+        /* 70px */
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        /* 40px */
+        line-height: 2.5rem;
+        /* 40px */
+    }
+
+    span {
+        display: block;
+    }
+
+    .section-greeting {
+        padding: 0.9375rem;
+        /* 15px */
+        font-size: 1rem;
+        /* 16px */
+    }
+
+    #btn-generate {
+        font-size: 1.5625rem;
+        /* 25px */
+    }
+
+    .result,
+    .hover-text {
+        font-size: 1.5625rem;
+        /* 25px */
+        padding: 0.625rem 1.25rem;
+        /* 10px 20px */
+    }
+}
+
+
+/* ------------- 880px -------------- */
+@media (max-width: 55rem) {
+    /* 880px = 55rem */
+
+    body {
+        padding: 0 3.75rem;
+        /* 60px */
+    }
+
+    h1 {
+        font-size: 2.25rem;
+        /* 36px */
+        line-height: 2.25rem;
+        /* 36px */
+    }
+
+    span {
+        display: block;
+    }
+
+    .section-greeting {
+        padding: 0.625rem;
+        /* 10px */
+        font-size: 0.875rem;
+        /* 14px */
+    }
+
+    #btn-generate {
+        font-size: 1.25rem;
+        /* 20px */
+    }
+
+    .result,
+    .hover-text {
+        font-size: 1.25rem;
+        /* 20px */
+        padding: 0.625rem 1.25rem;
+        /* 10px 20px */
+    }
+}
+
+
+/* ------------- 720px -------------- */
+@media (max-width: 45rem) {
+    /* 720px = 45rem */
+
+    body {
+        padding: 0 3.125rem;
+        /* 50px */
+    }
+
+    h1 {
+        font-size: 2rem;
+        /* 32px */
+        line-height: 2rem;
+        /* 32px */
+    }
+
+    span {
+        display: block;
+    }
+
+    .section-greeting {
+        padding: 0.625rem;
+        /* 10px */
+        font-size: 0.875rem;
+        /* 14px */
+    }
+
+    #btn-generate {
+        font-size: 1.25rem;
+        /* 20px */
+    }
+
+    .result,
+    .hover-text {
+        font-size: 1.25rem;
+        /* 20px */
+        padding: 0.625rem 1.25rem;
+        /* 10px 20px */
+    }
+}
+
+
+/* ------------- 596px -------------- */
+@media (max-width: 37.25rem) {
+    /* 596px = 37.25rem */
+
+    body {
+        padding: 0 2.5rem;
+        /* 40px */
+    }
+
+    h1 {
+        font-size: 1.875rem;
+        /* 30px */
+        line-height: 1.875rem;
+        /* 30px */
+    }
+
+    span {
+        font-size: 1.5625rem;
+        /* 25px */
+    }
+
+    h2 {
+        font-size: 1rem;
+        /* 16px */
+    }
+
+    .section-greeting {
+        padding: 0.625rem;
+        /* 10px */
+        font-size: 0.75rem;
+        /* 12px */
+    }
+
+    #btn-generate {
+        font-size: 0.9rem;
+        /* 14.4px */
+    }
+
+    .result,
+    .hover-text {
+        font-size: 1rem;
+        /* 16px */
+        padding: 0.625rem 1.25rem;
+        /* 10px 20px */
+    }
+}
+
+/* ------------- 520px -------------- */
+@media (max-width: 32.5rem) {
+    /* 520px = 32.5rem */
+
+    body {
+        padding: 0 1.875rem;
+        /* 30px */
+        /* */
+    }
+
+    h1 {
+        font-size: 1.5625rem;
+        /* 25px */
+        line-height: 1.5625rem;
+        /* 25px */
+    }
+
+    h2 {
+        font-size: 0.75rem;
+        /* 12px */
+        line-height: 0.625rem;
+        /* 10px */
+    }
+
+    #btn-generate {
+        font-size: 0.75rem;
+        /* 12px */
+    }
+
+    .result,
+    .hover-text {
+        font-size: 0.875rem;
+        /* 14px */
+        padding: 0.625rem 1.25rem;
+        /* 10px 20px */
+    }
+}
+
+/* ------------- 400px -------------- */
+@media (max-width: 25rem) {
+    /* 400px = 25rem */
+
+    body {
+        padding: 0 0.7rem;
+        /* 20px */
+    }
+
+    h2 {
+        font-size: 0.75rem;
+        /* 12px */
+        line-height: 0.625rem;
+        /* 10px */
+    }
+
+    #btn-generate {
+        font-size: 0.75rem;
+        /* 12px */
+    }
+
+    .result,
+    .hover-text {
+        font-size: 0.75rem;
+        /* 12px */
+        padding: 0.3125rem 0.625rem;
+        /* 5px 10px */
+    }
 }
