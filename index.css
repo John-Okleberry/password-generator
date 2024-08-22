@@ -206,8 +206,8 @@ p {
 
 
 /* ------------- 1400px -------------- */
-@media (max-width: 87.5rem) {
-    /* 1400px = 87.5rem */
+@media (min-width: 55.1rem) {
+    /* Larger Than 880px = 55rem */
 
     body {
         padding: 0px 4.375rem;
