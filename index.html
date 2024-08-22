@@ -1,92 +1,136 @@
+<!DOCTYPE html>
 <html>
-<!-- NOTE: To use the copy to clipboard feature, this website needs the site setting for click to copy functionality. An error message appears in Scrimba that does not appear when executing in Visual Studio Code-->
+< <!-- NOTE: To use the copy to clipboard feature, this website needs the site setting for click to copy functionality.
+    An error message appears in Scrimba that does not appear when executing in Visual Studio Code-->
 
-<head>
-    <title>Password Generator</title>
-    <meta http-equiv="Permissions-Policy" content="clipboard-write=(self)">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="index.css">
+<!-- Potential Improvements:
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bangers&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bangers&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
-        rel="stylesheet">
-</head>
+Add a fallback for older browsers when using the clipboard API
 
-<body>
-    <div>
-        <div class="section-greeting">
-            
-            <!-- Section of the page for the heading and subheading -->            
-            <div>
-                <h1>Generate a <span class="textHighlight">random password</span></h1>
-            </div>
-            <div>
-                <h2>Never use an insecure password again.</h2>
-            </div>
-            <div>
-                <button id="btn-generate">Generate passwords</button>
-            </div>
+ -->
 
-            <!-- Section of the page for the customization selections-->
-            <div>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Password Generator</title>
+        <meta http-equiv="Permissions-Policy" content="clipboard-write=(self)">
+
+        <!-- Meta tags for SEO and mobile responsiveness -->
+        <meta name="description"
+            content="A secure password generator tool to create strong, random passwords. Customize your password length, include special characters, numbers, and more.">
+        <meta name="keywords" content="password generator, secure passwords, random password, strong passwords">
+        <meta name="author" content="Jonathan Okleberry">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- External Styling -->
+        <link rel="stylesheet" href="index.css">
+
+        <!-- Open Graph meta tags for social media sharing -->
+        <meta property="og:title" content="Password Generator">
+        <meta property="og:description" content="Generate strong, random passwords with customizable options.">
+        <meta property="og:image" content="/image/open-graph.png">
+        <meta property="og:url" content="https://okleberry-password-generator.netlify.app/">
+        <meta property="og:type" content="website">
+
+        <!-- Google Fonts Preconnect -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <!-- Consolidated Google Fonts Link -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+            rel="stylesheet">
+
+        <!-- Favicon -->
+        <link rel="icon" href="/image/favicon.ico" type="image/x-Icon" alt="A capital P short for password">
+    </head>
+
+    <body>
+        <header>
+            <!-- A header section of the page for the heading and subheading -->
+            <h1>Generate a <span class="textHighlight">random password</span></h1>
+            <h2>Never use an insecure password again.</h2>
+            <button id="btn-generate">Generate passwords</button>
+        </header>
+
+        <main class="section-greeting">
+            <!-- A main section for the customization selections-->
+            <section aria-labelledby="customization-section">
+                <h3 id="customization-section" class="visually-hidden">Customize your password</h3>
                 <form id="customizations-el">
+
+                    <!-- A slider for specifying password length -->
                     <div class="input-item">
-                        <label for="length-el">Length (8-64) [32]</label>
-                        <input type="range" id="length-el" name="length" min="8" max="64">
+                        <label for="length-el">
+                            Length (8-64) [32]
+                            <input type="range" id="length-el" name="length" min="8" max="64" required>
+                        </label>
+                    </div>
+
+                    <!-- A series of checkboxes for customization selections-->
+                    <div class="input-item">
+                        <label for="specials-el">
+                            <input type="checkbox" id="specials-el" name="specials" value="useSpecials" checked="checked">
+                            Use Special Characters
+                        </label>
                     </div>
                     <div class="input-item">
-                        <input type="checkbox" id="specials-el" name="specials" value="useSpecials" checked="checked">
-                        <label for="specials-el">Use Special Characters</label>
+                        <label for="numbers-el">
+                            <input type="checkbox" id="numbers-el" name="numbers" value="useNumbers" checked="checked">
+                            Use Numbers
+                         </label>
                     </div>
                     <div class="input-item">
-                        <input type="checkbox" id="numbers-el" name="numbers" value="useNumbers" checked="checked">
-                        <label for="numbers-el">Use Numbers</label>
-                    </div>
-                    <div class="input-item">
-                        <input type="checkbox" id="duplicates-el" name="duplicates" value="excludeDuplicates">
-                        <label for="duplicates-el">Exclude Duplicates</label>
+                        <label for="duplicates-el">
+                            <input type="checkbox" id="duplicates-el" name="duplicates" value="excludeDuplicates">
+                            Exclude Duplicates
+                        </label>
                     </div>
 
                     <!-- Radio buttons for letter case adjustments -->
-                    <div class="input-item">
-                        <input type="radio" id="both-cases-el" name="case-option" value="bothCases" checked="checked">
-                        <label for="both-cases-el">Use Upper and Lowercase letters</label>
-                    </div>
-                    <div class="input-item">
-                        <input type="radio" id="uppercase-el" name="case-option" value="allUppercase">
-                        <label for="uppercase-el">All Capital Letters</label>
-                    </div>
-                    <div class="input-item">
-                        <input type="radio" id="lowercase-el" name="case-option" value="allLowercase">
-                        <label for="lowercase-el">All Lowercase Letters</label>
-                    </div>
-
+                    <fieldset>
+                        <legend class="visually-hidden">Letter Case Options</legend>
+                        <div class="input-item">
+                            <label for="both-cases-el">
+                                <input type="radio" id="both-cases-el" name="case-option" value="both" checked="checked">
+                                Use Upper and Lowercase letters
+                            </label>
+                        </div>
+                        <div class="input-item">
+                            <label for="uppercase-el">
+                                <input type="radio" id="uppercase-el" name="case-option" value="upper">
+                                All Capital Letters
+                            </label>
+                        </div>
+                        <div class="input-item">
+                            <label for="lowercase-el">
+                                <input type="radio" id="lowercase-el" name="case-option" value="lower">
+                                All Lowercase Letters
+                            </label>
+                        </div>
+                    </fieldset>
                 </form>
-            </div>
-        </div>
+            </section>
+        </main>
 
-        <!-- A section for displaying the resulting passwords -->
-        <div class="section-results">
-            <div id="password1-container" class="result">
-                <p id="password1-el">Password 1</p>
-                <span class="hover-text">Click to Copy</span>
-            </div>
-            <div id="password2-container" class="result" i>
-                <p id="password2-el">Password 2</p>
-                <span class="hover-text">Click to Copy</span>
-            </div>
-        </div>
-    </div>
+        <footer>
+            <!-- A footer section for displaying the resulting passwords -->
+            <section aria-labelledby="results-section">
+                <h3 id="results-section" class="visually-hidden">Your Generated Passwords</h3>
+                <div class="section-results">
+                    <div id="password1-container" class="result">
+                        <p id="password1-el" aria-live="polite">Password 1</p>
+                        <span class="hover-text">Click to Copy</span>
+                    </div>
+                    <div id="password2-container" class="result">
+                        <p id="password2-el" aria-live="polite">Password 2</p>
+                        <span class="hover-text">Click to Copy</span>
+                    </div>
+                </div>
+            </section>
+        </footer>
 
-    <script src="index.js"></script>
-</body>
+        <script src="index.js"></script>
+    </body>
 
 </html>
