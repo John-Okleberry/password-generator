@@ -37,6 +37,52 @@ __Stretch Goals:__ <br/>
 
 ## Challenges and Learning
 
+### Hover Text ("Click to Copy")
+
+- One earlier suggestion for making the text "click to copy" appear where the result paragraphs are generated was to change the "visibility". Unfortunately, issues came up where the browser refreshed the paragraph rapidly, resulting in a flickering paragraph
+- The entire paragraph was vanishing until the span was added and the class styling was moved to the div instead of the paragraph. The target for the hover CSS was updated to the new span. This fixed an issue where the "Click to Copy" text wasn't displaying at all
+- I briefly sturggled getting the styling for the two paragraphs to align but I found that my ID selector for one of them was missing the #
+- There were some alignment issues but those were fixed by updating the class to use some flexbox and setting things like position: absolute, the top let and transform attributes as well
+
+### Click to Copy Functionality
+
+- The event listener for clicking ont he paragraphs was hardley ever working
+- With a suggestion from ChatGPT, I added some global logging to identify the target of every single click event.
+    - This helped me to realize that the Span was being targeted, not the paragraph.
+    - This lead to me changing the target for the event to the parent container
+        - This allowed for clicking anywhere in the space instead of the small text area
+        - If we only targeted the paragraph, the hover would trigger before the pointer was over the password and clicking would have no effect
+    - As part of the solution, I added IDs to the parent divs for each paragraph in the HTML file and then replaced the event listener with one targeting the parent div's new ID
+    - One way to prevent the span from stealing clicks was to add some CSS to the span (pointer-events: none;)
+- Key learning: When click logging seems inconsistent, try logging the target of all clicks to learn more
+- Key learning: The concept of "event bubbling" came up and I studied it briefly to grasp the relevant concepts better
+
+### Paragraph Appearance
+
+- With some assistance from ChatGPT, I opted to setup the paragraphs with "word-break" set to "break-all" which really helped the overflow behavior when screen sizing was adjusted
+- I also set the height to a min-height rather than 100% which helped the paragraph to expand vertically to encompass the larger passwords on smaller screens
+- Key Learning: At least in this instance, word-break set to break-all was more effective than overflow-wrap set to break-word as that appeared to have no influence over my page
+
+### Variables
+
+- At one point, I found that I was getting a lot of unexpected duplicate characters and it was because I was targetting the existing passwords for comparison when I should have been targetting the (temp) password under construction. This was a good reminder to check my variables and make sure that I am using the correct ones at the correct times
+
+### CSS Cleanup
+
+- I was advised to use adjustable widths rather than absolute values for responsiveness
+- I made an effort to streamline CSS by elevating references to fonts to the most common part of my CSS- cutting down on repeated references
+- I learned how to use CSS variables for things like holding color values (something that will help me down the road when I experiment with different color or light/dark modes)
+- I was reminded of the importance of setting up fallback fonts when using external fonts like Google fonts
+- I was reminded that font-weights don't require a unit type like px
+- Using line height instead of just height is more adaptable
+
+### Efficiency in Using AI
+
+- I sped up my process with a few tasks while writing this site
+    - Converting checkboxes to radio buttons in a series
+    - Figuring out how to change default state of a checkbox/radio button
+    - Getting started on connecting my form inputs to the JavaScript for manipulation in my code (turned out to be easier than I thought after my initial Google search results had me a bit confused)
+
 ### Code Review Notes
 
 - There is a way to allow the click-to-copy feature to function within Scrimba but it requires using a deprecated feature (exec command method) and this problem should not occur outside of Scrimba
